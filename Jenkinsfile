@@ -16,7 +16,6 @@ node {
             app.push("latest")
          }
      }
-   echo "sometthing test"
    
 }
 
