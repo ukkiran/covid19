@@ -8,7 +8,7 @@ node {
         '''
     }
     stage('Build image') {
-       app = docker.build("vjytraining/covid19webapptrackervijay") 
+       app = docker.build("vjytraining/covid19webappvijay") 
     }
 
      stage('push image') {
