@@ -3,6 +3,10 @@ import groovy.json.JsonSlurper
 node {
     def container
     def acrSettings
+ 
+   stage('init') {
+        checkout scm
+    }
 
     withCredentials([azureServicePrincipal('principal-credentials-id')]) {
         stage('Prepare Environment') {
