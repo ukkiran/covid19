@@ -28,7 +28,7 @@ node {
         stage('deploy image') {
          sh '''
        	   az aks get-credentials --resource-group aksrg --name azakstest
-            kubectl apply -f deployments.yml
+            kubectl apply -f deployments.yaml
         '''     
         }
        
