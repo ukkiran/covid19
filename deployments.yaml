@@ -21,7 +21,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: covid19
-        image: azacrtest.azurecr.io/covid19test:v1
+        image: azacrtest.azurecr.io/covid19test2
         ports:
         - containerPort: 8080
         resources:
