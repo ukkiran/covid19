@@ -28,11 +28,6 @@ node {
             /* https://issues.jenkins-ci.org/browse/JENKINS-46108 */
             sh "docker login -u 900df6e1-33f6-482a-adc1-26aaae82ca66 -p f9ece8c4-1318-41d7-93f2-0748ae9f67ef azacrtest.azurecr.io"
             container.push()
-        }
-
-        stage('Deploy') {
-            echo 'Orchestrating a new deployment with kubectl is a simple exercise left to the reader ;)'
-        }
-    
+        }    
 
 }
