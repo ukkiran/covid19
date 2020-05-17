@@ -11,11 +11,19 @@ node {
        app = docker.build("vjytraining/covid19webappvijay") 
     }
 
-     stage('push image') {
+    stage('push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'DOCKERHUB') {
             app.push("latest")
          }
      }
-   
+     
+     stage('sonarqube analysis') {
+         withSonarQubeEnv('SonarQube') {
+            sh '''
+               mvn sonar:sonar
+              '''
+            }
+     }
+ 
 }
 
