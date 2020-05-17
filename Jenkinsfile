@@ -7,22 +7,27 @@ node {
           mvn clean package
         '''
     }
-    stage('Build image') {
-       app = docker.build("vjytraining/covid19webappvijay") 
-    }
 
-    stage('push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'DOCKERHUB') {
-            app.push("latest")
-         }
-     }
-     
-     stage('sonarqube analysis') {
-         withSonarQubeEnv('SonarQube') {
-            sh '''
-               mvn sonar:sonar
-              '''
+             stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    // Optionally use a Maven environment you've configured already
+                  
+                        sh 'mvn clean package sonar:sonar'
+                    
+                }
             }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 10, unit: 'MINUTES') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
      }
  
 }
