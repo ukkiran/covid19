@@ -12,7 +12,7 @@ node {
     }
 
      stage('push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'DOCKER') {
+        docker.withRegistry('https://registry.hub.docker.com', 'DOCKERHUB') {
             app.push("latest")
          }
      }
