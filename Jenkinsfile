@@ -16,5 +16,10 @@ node {
             app.push("latest")
          }
      }
+   stage('analyse code sonarqube') {
+       sh '''
+          mvn clean package sonar:sonar
+         '''
+   }
    
 }
