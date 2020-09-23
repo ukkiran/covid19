@@ -65,7 +65,7 @@
             		  <scope>compile</scope>
         	</dependency>
     </dependencies>
-    
+    /*
     <distributionManagement>
         <snapshotRepository>
             <id>maven-snapshots</id>
@@ -81,6 +81,7 @@
             <url>http://18.220.186.135:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
+	*/
 	
 	 <reporting>
   	 <plugins>
