@@ -13,6 +13,7 @@ pipeline {
           }
          stage('Build') {
             steps {
+                sh 'cd covid19'
                 sh 'mvn clean package'
             }
          }
