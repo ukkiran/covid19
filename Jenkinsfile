@@ -8,7 +8,7 @@ pipeline {
         stages {
           stage('cloning github repository') {
              steps {
-               sh 'git clone https://github.com/ukkiran/simple-java-maven-app.git'
+               sh 'git clone https://github.com/ukkiran/covid19.git'
              }
           }
          stage('Build') {
@@ -23,7 +23,7 @@ pipeline {
          }
          stage('deploy to tomcat') {
             steps{
-               sh 'sudo cp ./target/my-app-1.0-SNAPSHOT.jar /opt/tomcat/webapps/'
+               sh 'sudo cp ./target/covid19-0.0.1-SNAPSHOT.jar /opt/tomcat/webapps/'
             }
          }
          stage('Build image') {
