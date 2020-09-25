@@ -1,25 +1,51 @@
-node {
-   stage('init') {
-      checkout scm
+pipeline {
+    environment {
+                registry = "ukkb96/myapp"
+                registryCredential = 'dockerhub'
+                dockerImage = ''
     }
-    stage('build') {
-       sh '''
-          mvn clean package
-        '''
-    }
-    stage('Build image') {
-       app = docker.build("vjytraining/covid19webapptracker") 
-    }
-
-     stage('push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'DOCKERHUB') {
-            app.push("latest")
+     agent { label 'master' }
+        stages {
+          stage('cloning github repository') {
+             steps {
+               sh 'git clone https://github.com/ukkiran/simple-java-maven-app.git'
+             }
+          }
+         stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
          }
-     }
-   stage('analysing code with sonarqube') {
-      sh '''
-        mvn clean package sonar:sonar
-      '''
-   }
-   
+         stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+         }
+         stage('deploy to tomcat') {
+            steps{
+               sh 'sudo cp ./target/my-app-1.0-SNAPSHOT.jar /opt/tomcat/webapps/'
+            }
+         }
+         stage('Build image') {
+            steps{
+                script {
+                     docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+         }
+
+         stage('push image') {
+            steps{
+                script{
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()}
+                }
+            }
+         }
+         stage('analysing code with sonarqube'){
+            steps{
+                sh 'mvn clean package sonar:sonar'
+            }  
+         }
+    }
 }
