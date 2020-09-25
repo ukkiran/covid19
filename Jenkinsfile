@@ -8,7 +8,8 @@ pipeline {
         stages {
           stage('cloning github repository') {
              steps {
-               sh 'git clone https://github.com/ukkiran/covid19.git'
+                sh 'sudo rm -rf covid19'
+                sh 'git clone https://github.com/ukkiran/covid19.git'
              }
           }
          stage('Build') {
