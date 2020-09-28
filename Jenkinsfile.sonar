@@ -3,11 +3,10 @@ node {
       checkout scm
     }
     stage('build') {
-        withMaven(maven:'jenkinsmaven'){
+         withMaven(maven:'jenkinsmaven'){
                     sh 'mvn clean package'
                 }
-      
-    }
+            }
 
              stage('build && SonarQube analysis') {
             
