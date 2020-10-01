@@ -56,9 +56,9 @@ pipeline {
            stage('run codecoverage on sonarqube server') {
             steps{
                 sh 'mvn sonar:sonar \
-                    -Dsonar.projectKey=covid19 \
-                    -Dsonar.host.url=http://localhost:9001 \
-                    -Dsonar.login=232ee067751b9a6b03c0b0b3f503ae1a38c1dc32'
+                         -Dsonar.projectKey=covid19pipeline \
+                         -Dsonar.host.url=http://localhost:9001 \
+                         -Dsonar.login=b7f72f36eca1e8d81010cbc33c4e1ef45efb7f1f'
                 }
             }
           stage('run veracode scan') {
