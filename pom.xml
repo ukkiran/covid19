@@ -65,4 +65,20 @@
                 <maven.compiler.target>1.8</maven.compiler.target>
                 <java.version>11</java.version>
         </properties>
+        <distributionManagement>
+        <snapshotRepository>
+            <id>covid19</id>
+            <name>covid19</name>
+            <url>https://myjfrog9.jfrog.io/artifactory/covid19/</url>
+        </snapshotRepository>
+
+ 
+
+        <repository>
+            <id>covid19</id>
+            <name>covid19</name>
+            <url>https://myjfrog9.jfrog.io/artifactory/covid19/</url>
+        </repository>
+    </distributionManagement>
+</project>
 </project>
