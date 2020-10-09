@@ -3,9 +3,7 @@ pipeline {
                 registry = "ukkb96/covid19"
                 registryCredential = 'dockerhub'
                 dockerImage = ''
-                jfrog_user="admin"
-                jfrog_password="udaykiran@123"
-    }
+                }
      agent { label 'master' }
         stages {
            stage('git checkout') {
@@ -56,15 +54,11 @@ pipeline {
            stage('run codecoverage on sonarqube server') {
             steps{
                 sh 'mvn sonar:sonar \
-                         -Dsonar.projectKey=covid19pipeline \
-                         -Dsonar.host.url=http://localhost:9001 \
-                         -Dsonar.login=b7f72f36eca1e8d81010cbc33c4e1ef45efb7f1f'
+                     -Dsonar.projectKey=covid19sonarqube \
+                     -Dsonar.host.url=http://localhost:9001 \
+                     -Dsonar.login=4cd6abc8a4287b96a6952eb6792c6815c867c5c0'
                 }
             }
-          stage('run veracode scan') {
-            steps{
-                sh 'pwd'
-            }
-         }
+          
     }
 }
